@@ -3,13 +3,27 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import logo from './logo.svg';
 import styles from './App.module.scss';
-import Titulo from './Titulo';
 
 function App() {
-  const [time, setTime] = useState(Date.now());
+  const [paises, setPaises] = useState([]);
+  const [error, setError] = useState('');
+
+  // Se inicializa el componente App
   useEffect(() => {
-    setInterval(() => setTime(Date.now()), 1000);
+    // Llamo al endpoint https://restcountries.eu/rest/v2/all?fields=name
+    const getPaises = async () => {
+      // Capturo los posibles errores con try/catch
+      try {
+        const response = await axios.get('https://restcountriddes.eu/rest/v2/all?fields=name');
+        setPaises(response.data);
+      } catch (err) {
+        console.error('fallo axios', err);
+        setError('Hubo un error al traer los paises');
+      }
+    };
+    getPaises();
   }, []);
+
   return (
     <div className={styles.App}>
       <header className={styles.AppHeader}>
@@ -21,10 +35,12 @@ function App() {
           {' '}
           and save to reload.
         </p>
-        <button type="button" onClick={() => setTime(Date.now())}>Set time</button>
-        <Titulo mensaje={time} />
         <p>{process.env.REACT_APP_NOT_SECRET_CODE}</p>
         <p>{process.env.NODE_ENV}</p>
+        {error}
+        {paises.map((pais) => (
+          <p>{pais.name}</p>
+        ))}
         <a
           className={styles.AppLink}
           href="https://reactjs.org"
