@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import logo from './logo.svg';
@@ -17,7 +16,6 @@ function App() {
         const response = await axios.get('https://restcountriddes.eu/rest/v2/all?fields=name');
         setPaises(response.data);
       } catch (err) {
-        console.error('fallo axios', err);
         setError('Hubo un error al traer los paises');
       }
     };
@@ -38,6 +36,7 @@ function App() {
         <p>{process.env.REACT_APP_NOT_SECRET_CODE}</p>
         <p>{process.env.NODE_ENV}</p>
         {error}
+        Hola
         {paises.map((pais) => (
           <p>{pais.name}</p>
         ))}
