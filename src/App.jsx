@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import logo from './logo.svg';
 import styles from './App.module.scss';
+import Country from './models/Country';
 
 function App() {
   const [paises, setPaises] = useState([]);
@@ -15,6 +16,8 @@ function App() {
       try {
         const response = await axios.get('https://restcountriddes.eu/rest/v2/all?fields=name');
         setPaises(response.data);
+        // const pais = new Country();
+        // const nombrePais = pais.
       } catch (err) {
         setError('Hubo un error al traer los paises');
       }
