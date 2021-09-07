@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import logo from './logo.svg';
 import styles from './App.module.scss';
-import Country from './models/Country';
 
 function App() {
   const [paises, setPaises] = useState([]);

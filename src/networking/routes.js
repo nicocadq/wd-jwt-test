@@ -4,4 +4,6 @@ const ROUTES = {
 
 const generateURL = (route) => `${process.env.REACT_APP_API_URL}${route}`;
 
-export { ROUTES, generateURL };
+const generateBackendURL = (route) => `${process.env.REACT_APP_API_ALT_URL}${route}`;
+
+export { ROUTES, generateURL, generateBackendURL };
